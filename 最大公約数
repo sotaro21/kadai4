@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature 'say';
+
+use DDP { deparse => 1 };
+
+print "整数2つを入力して下さい i,j >>";
+chomp(my $input = <STDIN>);
+my ($i, $j) = split(/,/, $input);
+say get_gcd($i, $j);
+
+sub get_gcd{
+    my $x = shift;
+    my $y = shift;
+    my $mod = $x % $y;
+    my $result;
+    if ($mod == 0){
+        return  $y;
+    } else {
+        return get_gcd($y, $mod);
+    }
